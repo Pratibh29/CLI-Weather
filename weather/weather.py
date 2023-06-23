@@ -3,6 +3,7 @@ import pyfiglet
 from simple_chalk import chalk
 import requests
 from azure.storage.blob import BlobServiceClient
+import datetime
 
 
 # Api key for
@@ -77,7 +78,8 @@ container_name = "weatherapp"
 
 def upload_to_blob_storage(data):
     # Replace <blob_name> with the desired name for your blob file
-    blob_name = "ablob.txt"
+   current_time=datetime.datetime.now().strftime("%Y%M%dH%M%S")
+    blob_name = f"bblob_{current_time}.txt"
     
     data_bytes = data.encode("utf-8")
 
@@ -85,7 +87,7 @@ def upload_to_blob_storage(data):
     container_client = blob_service_client.get_container_client('weatherapp')
 
     # Upload the data to the container
-    container_client.upload_blob(name='ablob', data=data_bytes)
+    container_client.upload_blob(name=blob_name, data=data_bytes)
 
 upload_to_blob_storage(output)
 
