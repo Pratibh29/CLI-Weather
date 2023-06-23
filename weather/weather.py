@@ -78,7 +78,7 @@ container_name = "weatherapp"
 
 def upload_to_blob_storage(data):
     # Replace <blob_name> with the desired name for your blob file
-   current_time=datetime.datetime.now().strftime("%Y%M%dH%M%S")
+    current_time=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
     blob_name = f"bblob_{current_time}.txt"
     
     data_bytes = data.encode("utf-8")
